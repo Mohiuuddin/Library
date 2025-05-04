@@ -70,6 +70,27 @@ function displayBook(myLibrary){
 displayBook(myLibrary);
 
 document.querySelector("#addBtn").addEventListener("click", ()=>{
-    // ............
+    const dialog = document.querySelector("dialog");
+    dialog.showModal();
+
+    dialog.addEventListener("click", (event) => {
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog =
+          event.clientX >= rect.left &&
+          event.clientX <= rect.right &&
+          event.clientY >= rect.top &&
+          event.clientY <= rect.bottom;
+      
+        if (!isInDialog) {
+          dialog.close();
+        }
+      });
+    
+    const addBook= document.querySelector('#addBook');
+    addBook.addEventListener("submit", (event)=>{
+        event.preventDefault();
+    });
+    
+
 });
 

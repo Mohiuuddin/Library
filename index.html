@@ -11,6 +11,24 @@
         <h3>Library</h3>
         <button class="add-btn" id="addBtn">+ Add Book</button>
     </header>
+
+
+    <dialog>
+        <form id="addBook">
+        <h3>Add a new book</h3>
+        <input type="text" placeholder="Title" name="title" id="title" required>
+        <input type="text" placeholder="Author" name="author" id="author" required>
+        <input type="number" placeholder="Pages" name="pages" id="pages" required>
+        <div class="readIt">
+        <h3>Have you read it?</h3> 
+        <input type="checkbox" name="readIt" id="readIt" required>
+        </div>
+        <button type="submit">Submit</button>
+        </form>
+
+    </dialog>
+
+
     <main>
 
         <div class="content" id="content">
@@ -37,7 +55,10 @@
             </div> -->
         </div>
 
+
     </main>
+
+    
 
     <script src="script.js"></script>
 </body>
