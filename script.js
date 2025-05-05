@@ -5,15 +5,15 @@ const myLibrary= [
 
 ];
 
-function Book(title, author, pages, hasRead){
+function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.hasRead = hasRead;
+    this.read = read;
 }   
 
-function addBookToLibaray(title, author, pages, hasRead){
-    const newBook = new Book(title, author, pages, hasRead);
+function addBookToLibaray(title, author, pages, read){
+    const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     displayBook(myLibrary);
 }
@@ -69,28 +69,41 @@ function displayBook(myLibrary){
 }
 displayBook(myLibrary);
 
-document.querySelector("#addBtn").addEventListener("click", ()=>{
-    const dialog = document.querySelector("dialog");
+const dialog = document.querySelector("dialog");
+const addBook = document.querySelector("#addBook");
+
+document.querySelector("#addBtn").addEventListener("click", () => {
     dialog.showModal();
-
+  
     dialog.addEventListener("click", (event) => {
-        const rect = dialog.getBoundingClientRect();
-        const isInDialog =
-          event.clientX >= rect.left &&
-          event.clientX <= rect.right &&
-          event.clientY >= rect.top &&
-          event.clientY <= rect.bottom;
-      
-        if (!isInDialog) {
-          dialog.close();
-        }
-      });
-    
-    const addBook= document.querySelector('#addBook');
-    addBook.addEventListener("submit", (event)=>{
-        event.preventDefault();
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+  
+      if (!isInDialog) {
+        dialog.close();
+      }
     });
-    
+  });
 
-});
+  addBook.addEventListener("submit", function (event) {
+    event.preventDefault();
+  
+    const formData = new FormData(this);
+    const title = formData.get("title");
+    const author = formData.get("author");
+    const pages = formData.get("pages");
+    const read = formData.has("readIt");
+  
+    addBookToLibaray(title, author, pages, read);
+    this.reset();
+    dialog.close();
+  });
+  
+
+
+
 
